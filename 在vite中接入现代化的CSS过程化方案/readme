@@ -1,0 +1,13 @@
+原生CSS：
+1原生 CSS 不支持选择器的嵌套，
+2如果出现同样的类名，很容易造成不同的样式互相覆盖和污染，
+3浏览器兼容问题，
+4打包后的代码体积问题.
+解决方案：
+CSS 预处理器： scss,less,stylus.嵌套规则，定义变量，条件判断和循环语句。
+CSS Modules ：CSS 类名处理成哈希值。
+CSS 后处理器PostCSS：
+CSS in JS 方案
+CSS 原子化框架
+
+vite:本身对 CSS 各种预处理器语言(Sass/Scss、Less和Stylus)做了内置支持
