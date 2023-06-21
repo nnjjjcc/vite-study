@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import windi from "vite-plugin-windicss";
 import autoprefixer from 'autoprefixer';
 //自动添加浏览器前缀。
 import { normalizePath } from 'vite';
@@ -14,7 +15,20 @@ const variablePath = normalizePath(path.resolve('./src/variable.scss'))
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  //css in js
+  plugins: [windi(), react({
+    babel: {
+      plugins: [
+        // 适配 styled-component
+        "babel-plugin-styled-components",
+        // 适配 emotion
+        "@emotion/babel-plugin"
+      ]
+    },
+    // 注意: 对于 emotion，需要单独加上这个配置
+    // 通过 `@emotion/react` 包编译 emotion 中的特殊 jsx 语法
+    jsxImportSource: "@emotion/react"
+  })],
   // css 相关的配置
   css: {
     //指定预处理器的相关配置
@@ -37,7 +51,8 @@ export default defineConfig({
           // 兼容 Chrome 版本大于 40、Firefox 版本大于 31 和 IE 11。
         })
       ]
-    }
+    },
+    //Tailwind CSS 和 Windi CSS
   }
 
 })
